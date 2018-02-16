@@ -11,6 +11,28 @@
   </header>
     
   <body>
+var list = [
+    { Song Title: 'Your Love', Artist: 'The Outfield', Genre: 'Rock' },
+    { Song Title: 'Sweater Weather', Artist: 'The Neighbourhood', Genre: 'Rock' }
+    { Song Title: 'Fast Car', Artist: "Tracy Chapman', Genre: 'Folk'},
+    { Song Title: 'Nightcall', Artist: 'Kavinsky', Genre: 'Techno' },
+    { Song Title: 'Two Door Cinema Club', Artist: 'Two Door Cinema Club' , Genre: 'Punk' },
+];
+    
+var globalCounter = 0;
+var tbody = document.getElementById('tbody');
+
+for (var i = 0; i < list.length; i++) {
+    var tr = "<tr>";
+
+    /* Verification to add the last decimal 0 */
+    if (obj[i].value.toString().substring(obj[i].value.toString().indexOf('.'), obj[i].value.toString().length) < 2) 
+        obj[i].value += "0";
+
+    /* We add the table row to the table body */
+    tbody.innerHTML += tr;
+}
+    
     
 <p style="page-break-before: always">  </p>
 <form method="get" action="/page2">
