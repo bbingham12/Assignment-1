@@ -11,35 +11,51 @@
   </header>
     
   <body>
+    <h1>Below is a table of my 5 favorite songs</h1>    
     
-    <table>
-    <tbody id="tbody"></tbody>
+<table cellpadding="2" cellspacing="2" border="0" bgcolor="#dfdfdf" width="40%" align="center">
+<thead>
+    <tr>
+        <th>Song Name</th>
+        <th width="20%">Artist</th>
+        <th width="12%">Genre</th>
+    </tr>
+</thead>
+    <tbody id="tableData"></tbody>
 </table>
-    
-<script>
-    
-var list = [
+<script type="text/javascript">
+    var mainObj = [
+        {
+            name: "Kapil",
+            age:  21,
+            status: "Active"
+        },
+        {
+            name: "John",
+            age:  28,
+            status: "Inactive"
+        },
+        {
+            name: "Deos",
+            age:  18,
+            status: "Active"
+        },
     { Song_Title: 'Your Love', Artist: 'The Outfield', Genre: 'Rock' },
     { Song_Title: 'Sweater Weather', Artist: 'The Neighbourhood', Genre: 'Rock' },
     { Song_Title: 'Fast Car', Artist: 'Tracy Chapman', Genre: 'Folk'},
     { Song_Title: 'Nightcall', Artist: 'Kavinsky', Genre: 'Techno' },
     { Song_Title: 'Two Door Cinema Club', Artist: 'Two Door Cinema Club' , Genre: 'Punk' },
-];
-    
-var globalCounter = 0;
-var tbody = document.getElementById('tbody');
-
-for (var i = 0; i < list.length; i++) {
-    var tr = "<tr>";
-
-    /* Verification to add the last decimal 0 */
-    if (obj[i].value.toString().substring(obj[i].value.toString().indexOf('.'), obj[i].value.toString().length) < 2) 
-        obj[i].value += "0";
-
-    /* We add the table row to the table body */
-    tbody.innerHTML += tr;
-}
- 
+    ];
+    var k = '<tbody>'
+    for(i = 0;i < mainObj.length; i++){
+        k+= '<tr>';
+        k+= '<td>' + mainObj[i].Song_Title + '</td>';
+        k+= '<td>' + mainObj[i].Artist + '</td>';
+        k+= '<td>' + mainObj[i].Genre + '</td>';
+        k+= '</tr>';
+    }
+    k+='</tbody>';
+    document.getElementById('tableData').innerHTML = k;
     </script>
     
     
