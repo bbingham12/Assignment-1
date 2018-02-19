@@ -32,11 +32,11 @@
      
 <script type="text/javascript">
     var mainObj = [
-    { Song_Title: 'Your Love', Artist: 'The Outfield', Genre: 'Rock' },
-    { Song_Title: 'Sweater Weather', Artist: 'The Neighbourhood', Genre: 'Rock' },
-    { Song_Title: 'Fast Car', Artist: 'Tracy Chapman', Genre: 'Folk'},
-    { Song_Title: 'Nightcall', Artist: 'Kavinsky', Genre: 'Techno' },
-    { Song_Title: 'What You Know', Artist: 'Two Door Cinema Club' , Genre: 'Punk' },
+    { Song_Title: 'Your Love', Artist: 'The Outfield', Genre: 'Rock', Song_Length: '2:32' },
+    { Song_Title: 'Sweater Weather', Artist: 'The Neighbourhood', Genre: 'Rock', Song_Length: '3:21' },
+    { Song_Title: 'Fast Car', Artist: 'Tracy Chapman', Genre: 'Folk', Song_Length: '2:54'},
+    { Song_Title: 'Nightcall', Artist: 'Kavinsky', Genre: 'Techno', Song_Length: '2:48' },
+    { Song_Title: 'What You Know', Artist: 'Two Door Cinema Club' , Genre: 'Punk', Song_Length: '3:15' },
     ];
     var k = '<tbody>'
     for(i = 0;i < mainObj.length; i++){
@@ -44,6 +44,7 @@
         k+= '<td>' + mainObj[i].Song_Title + '</td>';
         k+= '<td>' + mainObj[i].Artist + '</td>';
         k+= '<td>' + mainObj[i].Genre + '</td>';
+        k+= '<td>' + mainObj[i].Song_Length + '</td>';
         k+= '</tr>';
     }
     k+='</tbody>';
