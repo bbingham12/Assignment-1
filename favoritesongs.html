@@ -28,10 +28,31 @@
 </thead>
     <tbody id="tableData"></tbody>
 </table>
-   
+  
+ <h2>This table displays stats of my playlist.</h2>    
+    
+<font color="#D35400" size = "4">  
+<table cellpadding="2" cellspacing="2" border="1" bgcolor="#dfdfdf" width="40%" align="left">
+<thead>
+    <tr>
+       <th>Total Songs in Playlist</th>
+       <th>Total Artist in Playlist</th>
+       <th>Total Playlist Time</th>
+       
+    </tr>
+    </font>
+
+</thead>
+    <tbody id="tableData"></tbody>
+</table>
+    
+    
+    
+
      
 <script type="text/javascript">
-    var mainObj = [
+  
+    var songsTable = [
     { Song_Title: 'Your Love', Artist: 'The Outfield', Genre: 'Rock', Song_Length: '2:32' },
     { Song_Title: 'Sweater Weather', Artist: 'The Neighbourhood', Genre: 'Rock', Song_Length: '3:21' },
     { Song_Title: 'Fast Car', Artist: 'Tracy Chapman', Genre: 'Folk', Song_Length: '2:54'},
@@ -39,17 +60,40 @@
     { Song_Title: 'What You Know', Artist: 'Two Door Cinema Club' , Genre: 'Punk', Song_Length: '3:15' },
     ];
     var k = '<tbody>'
-    for(i = 0;i < mainObj.length; i++){
+    for(i = 0;i < songsTable.length; i++){
         k+= '<tr>';
-        k+= '<td>' + mainObj[i].Song_Title + '</td>';
-        k+= '<td>' + mainObj[i].Artist + '</td>';
-        k+= '<td>' + mainObj[i].Genre + '</td>';
-        k+= '<td>' + mainObj[i].Song_Length + '</td>';
+        k+= '<td>' + songsTable[i].Song_Title + '</td>';
+        k+= '<td>' + songsTable[i].Artist + '</td>';
+        k+= '<td>' + songsTable[i].Genre + '</td>';
+        k+= '<td>' + songsTable[i].Song_Length + '</td>';
         k+= '</tr>';
     }
     k+='</tbody>';
     document.getElementById('tableData').innerHTML = k;
+  
+  
+  var statsTable = [
+    { totalSongs: '5', totalArtist: '5', playlistLength: '2:32' }
+    ];
+  
+    
+    var j = '<tbody>'
+    for(i = 0;i < statsTable.length; i++){
+        j+= '<tr>';
+        j+= '<td>' + statsTable[i].totalSongs + '</td>';
+        j+= '<td>' + statsTable[i].totalArtist + '</td>';
+        j+= '<td>' + statsTable[i].playlistLength + '</td>';
+        j+= '</tr>';
+    }
+    j+='</tbody>';
+    document.getElementById('tableData').innerHTML = j;
     </script>
+    
+    
+    
+    // On the page with your table of music, add a data element to the object that tells how long the song is. 
+
+// Then, create a statistics table that shows how many songs, how many artists, and what the total time is to play the whole list.
     
     
 <p style="page-break-before: always">  </p>
