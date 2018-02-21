@@ -2,13 +2,10 @@
   <html>
   <header>
   <link rel="stylesheet" href="main-php.css">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<style type="text/css">
-    table { page-break-inside:auto }
-    tr    { page-break-inside:avoid; page-break-after:auto }
-    thead { display:table-header-group }
-    tfoot { display:table-footer-group }
+<style>
+.break { page-break-before: always; }
 </style>
+<body>
     
  	<div class='center'>
   
@@ -36,7 +33,7 @@
     <tbody id="songsTable"></tbody>
 </table>
     
-<div class="pagebreak"> </div>   
+<div class="break"> </div>   
     
 <p class="break" style="page-break-before: always"> &nbsp </p>
 <font color="#000000">    
@@ -59,8 +56,8 @@
     <tbody id="statsTable"></tbody>
 </table>
     
-<div class="pagebreak"> </div>
-    
+<div class="break"> </div>
+<p class="break" style="page-break-before: always"> &nbsp </p>    
 <script type="text/javascript">
   
     var songsTable = [
@@ -84,7 +81,7 @@
   
   
   var statsTable = [
-    { totalSongs: '5', totalArtist: '5', playlistLength: '2:32' }
+    { totalSongs: '5', totalArtist: '5', playlistLength: '14 min 50 sec' }
     ];
   
     
