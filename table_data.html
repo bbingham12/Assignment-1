@@ -195,33 +195,13 @@
    </head>
    <body>
       <!-- Feel free to add empty tags. Data shouldn't be here. -->
-      
       <h1>Organizations Table</h1>
       <div id="org_table"></div>
       <h1> Organizations' Stats Table</h1>
       <div id="statsTable"></div>
       <script type="text/javascript">
-         // Creating a array out of the JSON data
-         // this first chunk of code gets the columns
-         var orgArray = new Array();
-         	var keys = [];
-         for(var k in organizations[0]) keys.push(k);
-         orgArray.push(keys);
-          
-         // this fills the orgArray with all the value data
-         var index = [];
-         for(var k in organizations) index.push(k);
-         for (var j = 0; j < organizations.length; j++) {
-         		values = organizations[index[j]];
-         		v = [];
-         		for(var key in values) {
-            			var val = values[key];
-            			v.push(val)
-         		}
-         		orgArray.push(v);
-         	}
-         console.log(orgArray);
-         
+         // this function deletes a table row corresponding to the button pressed
+         // it also call GenerateStatTable() to update the stat table.
          function deleteRow(r) {
              var i = r.parentNode.parentNode.rowIndex;
              document.getElementById("myTable").deleteRow(i);
@@ -229,18 +209,17 @@
              orgArray.splice(i, 1);
             // document.getElementById("statsTable").remove();
              GenerateStatTable();
-             return orgArray;
-         
          }
          
+         // checkUnique() counts how many unique countries are in the table
          function checkUnique()  {
-         
+            // counts array holds disticnt coutry names
          	var counts = {};
          	for (var i = 0; i < orgArray.length; i++) {
          	    counts[orgArray[i][1]] = 1 + (orgArray[i][1] || 0);
              }
-         
          	var size = Object.keys(counts).length;
+            // checks that "Country" is not in the array
              if (counts.hasOwnProperty('Country')) {
              	return (size - 1);
              }
@@ -249,7 +228,7 @@
              }
          }
          
-         
+         // countCheck counts the number of instances a certain word appears in a table column
          function countCheck(test)  {
          	// setting vars for high income test
          	if (test == 2) {
@@ -263,59 +242,113 @@
          	if (test == 4) {
          		check = "For-profit"
          	}
-         
+            // for each occurance of the check word, size increaments 1
          	var size = 0;
          	for (var i = 0; i < orgArray.length; i++) {
          	    if (orgArray[i][test] == check){
          	    	size++;
          	    }
-         		
              }
          
          	// setting return for orgcount test
          	if  (test == 3) {
          		size = orgArray.length - size;
          	}
-         	
          	return size;
          }
-         // outputs the first item of the organizations array. Just for testing.
-         // Your JavaScript code goes here
+          
+         // This function generates the stats table and updates it when rows are deleted.
+         function GenerateStatTable() {
+          //Build an array for stat info
+          var orgStats = new Array();
+          orgStats.push(["# of Organizations", "# of unique countries", "# of high-income countries", "# of For-profit Org Types" ]);
+          orgStats.push([countCheck(3), checkUnique(1), countCheck(2), countCheck(4)]);
          
+          //Create a HTML Table element.
+          var statTable = document.createElement("TABLE");
+          //setting id and properties
+          statTable.id = 'statsTable'
+         statTable.border = '1px solid black'
+          statTable.border = "1";
          
+          //Get the count of columns.
+          var numColumns = orgStats[0].length;
          
+          //Add the header row.
+          var row = statTable.insertRow(-1);
+          row.innerHTML = '<tr></tr>'
+          for (var i = 0; i < numColumns; i++) {
+              var headerCell = document.createElement("TH");
+              headerCell.innerHTML = '<th>' + orgStats[0][i] + '</th>';
+              row.appendChild(headerCell);
+          }
+         
+          //Add the data rows.
+          for (var i = 1; i < orgStats.length; i++) {
+              row = statTable.insertRow(-1);
+              for (var j = 0; j < numColumns; j++) {
+                  var cell = row.insertCell(-1);
+                  cell.innerHTML = '<td>' + orgStats[i][j] + '</td>'
+              }
+          }
+         
+          var statsTable = document.getElementById("statsTable");
+          statsTable.innerHTML = "";
+          statsTable.appendChild(statTable);
+         }
+         
+         // Creating a array out of the JSON data
+         // this first chunk of code gets the columns
+         var orgArray = new Array();
+         var keys = [];
+         for(var k in organizations[0]) keys.push(k);
+         orgArray.push(keys);
+         
+         // this fills the orgArray with all the value data
+         var index = [];
+         for(var k in organizations) index.push(k);
+         for (var j = 0; j < organizations.length; j++) {
+            values = organizations[index[j]];
+            v = [];
+            for(var key in values) {
+                  var val = values[key];
+                  v.push(val)
+            }
+            orgArray.push(v);
+         }
          
          	
          //Create a HTML Table element.
          var table = document.createElement("TABLE");
+         //setting id and properties
          table.id = 'myTable'
-         table.border = '1px solid black'
-         // table.style.border = "2px solid #FFA500";
-         
+         table.border = '1px solid black' 
          
          //Get the count of columns.
-         var columnCount = orgArray[0].length;
+         var numColumns = orgArray[0].length;
          
          //Add the header row.
          var row = table.insertRow(-1);
          row.innerHTML = '<tr></tr>'
-         for (var i = 0; i < columnCount; i++) {
+         for (var i = 0; i < numColumns; i++) {
              var headerCell = document.createElement("TH");
              headerCell.innerHTML = '<th >' + orgArray[0][i] + '</th>';
              row.appendChild(headerCell);
          }
-         	headerCell = document.createElement("TH");
-             headerCell.innerHTML = '<th><td><input type="button" value="Hide Row" onclick="deleteRow(this)"></td></th>';
-             row.appendChild(headerCell);
+         //this cde adds a clickable button to each row calling the deleteRow() funtion.
+         headerCell = document.createElement("TH");
+          headerCell.innerHTML = '<th><td><input type="button" value="Hide Row" onclick="deleteRow(this)"></td></th>';
+          row.appendChild(headerCell);
          
          
          //Add the data rows.
          for (var i = 1; i < orgArray.length; i++) {
              row = table.insertRow(-1);
-             for (var j = 0; j < columnCount; j++) {
+             for (var j = 0; j < numColumns; j++) {
                  var cell = row.insertCell(-1);
                  cell.innerHTML = '<td>' + orgArray[i][j] + '</td>'
              }
+            //this cde adds a clickable button to each row calling the deleteRow() funtion.
              cell = row.insertCell(-1);
            	cell.innerHTML =  '<td><input type="button" value="Hide Row" onclick="deleteRow(this)"></td>'
          
@@ -325,48 +358,8 @@
          org_table.innerHTML = "";
          org_table.appendChild(table);
          
+         // initializing stat table
          GenerateStatTable();
-         
-         function GenerateStatTable() {
-             //Build an array containing Customer records.
-         
-             var orgStats = new Array();
-             orgStats.push(["# of Organizations", "# of unique countries", "# of high-income countries", "# of For-profit Org Types" ]);
-             orgStats.push([countCheck(3), checkUnique(1), countCheck(2), countCheck(4)]);
-         
-             //Create a HTML Table element.
-             var statTable = document.createElement("TABLE");
-             statTable.id = 'statsTable'
-         	statTable.border = '1px solid black'
-             statTable.border = "1";
-          
-             //Get the count of columns.
-             var columnCount = orgStats[0].length;
-          
-             //Add the header row.
-             var row = statTable.insertRow(-1);
-             row.innerHTML = '<tr></tr>'
-             for (var i = 0; i < columnCount; i++) {
-                 var headerCell = document.createElement("TH");
-                 headerCell.innerHTML = '<th>' + orgStats[0][i] + '</th>';
-                 row.appendChild(headerCell);
-             }
-          
-             //Add the data rows.
-             for (var i = 1; i < orgStats.length; i++) {
-                 row = statTable.insertRow(-1);
-                 for (var j = 0; j < columnCount; j++) {
-                     var cell = row.insertCell(-1);
-                     cell.innerHTML = '<td>' + orgStats[i][j] + '</td>'
-                 }
-             }
-          
-             var statsTable = document.getElementById("statsTable");
-             statsTable.innerHTML = "";
-             statsTable.appendChild(statTable);
-         }
-         
-         
          
       </script>
    </body>
