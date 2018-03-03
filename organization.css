@@ -1,4 +1,10 @@
 /* Tabulator v3.4.4 (c) Oliver Folkerd */
+
+#org_table{
+  width:100%;  
+  font-family:sans-serif;
+}
+
 .tabulator {
   position: relative;
   border: 1px solid #999;
