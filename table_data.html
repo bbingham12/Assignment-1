@@ -10,7 +10,7 @@
 </style>
 
 <!-- Data -->
-<script>
+<script type="text/javascript" src="tabulator.js">
 
 // Don't copy this to any other places in this file. You can just use the "organizations" variable to do your assignment. 
 var organizations = [
@@ -202,38 +202,18 @@ var organizations = [
 </head>
 
 <body>
+
+
 	
  <h1 class="break">Organizations tables</h1>    
-   <font color="#D35400" size = "4">  
-<table cellpadding="2" cellspacing="2" border="1" bgcolor="#dfdfdf" width="40%" align="left">
-<thead>
-    <tr>
-	<th>Region</th>
-	<th>Country</th>
-	<th>Country Income Level</th>
-	<th>Organization Name</th>
-	<th>Organization Type</th>
-	<th>Sectors</th>
-	<th>Description</th>
-	<th>City</th>
-	<th>State/Region</th>
-	<th>Founding Year</th>
-	<th>Size</th>
-	<th>Type of Data Used</th>
-	<th>profileID</th>
-    </tr>
-    </font>
-</thead>
-    <tbody id="organizationsTable"></tbody>
-</table>
+
 	
 	
 <!-- Feel free to add empty tags. Data shouldn't be here. -->
-	<div id="org_table"></div>
+<div id="org_table"></div>
 
 <script>
 // outputs the first item of the organizations array. Just for testing.
-console.log(organizations[0]); 
 	
 var k = '<tbody>'
     for(i = 0;i < organizations.length; i++){
@@ -255,6 +235,26 @@ var k = '<tbody>'
     }
     k+='</tbody>';
     document.getElementById('organizationsTable').innerHTML = k;
+	
+$("#example-table").tabulator({
+  columns:[
+    {title:"Region", field:"Region"},
+    {title:"Country", field:"Country"},
+    {title:"Country Income Level", field:"Country_Income_Level"},
+    {title:"Organization Name", field:"Organization_Name"},
+    {title:"Organization Type", field:"Organization_Type"},
+    {title:"Sectors", field:"Sectors"},
+    {title:"Description", field:"Description"},
+    {title:"City", field:"name"},
+    {title:"State/Region", field:"StateRegion"},
+    {title:"Founding Year", field:"Founding_Year"},
+    {title:"Size", field:"Size"},
+    {title:"Type of Data Used", field:"Type_of_Data_Used"},
+    {title:"profileID", field:"profileID"},
+  ],
+});
+	
+$("org_table").tabulator("setData", organizations);
 
 </script>
 
