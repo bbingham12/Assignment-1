@@ -214,29 +214,10 @@ var organizations = [
 
 <script>
 // outputs the first item of the organizations array. Just for testing.
-	
-var k = '<tbody>'
-    for(i = 0;i < organizations.length; i++){
-        k+= '<tr>';
-        k+= '<td>' + organizations[i].Region + '</td>';
-        k+= '<td>' + organizations[i].Country + '</td>';
-        k+= '<td>' + organizations[i].Country_Income_Level + '</td>';
-        k+= '<td>' + organizations[i].Organization_Name + '</td>';
-	k+= '<td>' + organizations[i].Organization_Type + '</td>';
-        k+= '<td>' + organizations[i].Sectors + '</td>';
-        k+= '<td>' + organizations[i].Description + '</td>';
-        k+= '<td>' + organizations[i].City + '</td>';
-	k+= '<td>' + organizations[i].StateRegion + '</td>';
-        k+= '<td>' + organizations[i].Founding_Year + '</td>';
-	k+= '<td>' + organizations[i].Size + '</td>';
-        k+= '<td>' + organizations[i].Type_of_Data_Used + '</td>';
-        k+= '<td>' + organizations[i].profileID + '</td>';
-        k+= '</tr>';
-    }
-    k+='</tbody>';
-    document.getElementById('organizationsTable').innerHTML = k;
-	
-$("org_table").tabulator({
+
+$("#org_table").tabulator({
+  height:"300px",
+  fitColumns:true,
   columns:[
     {title:"Region", field:"Region"},
     {title:"Country", field:"Country"},
@@ -254,7 +235,7 @@ $("org_table").tabulator({
   ],
 });
 	
-$("org_table").tabulator("setData", organizations);
+$("#org_table").tabulator("setData", organizations);
 
 </script>
 
